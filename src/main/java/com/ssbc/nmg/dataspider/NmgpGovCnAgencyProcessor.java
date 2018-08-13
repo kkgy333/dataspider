@@ -37,7 +37,7 @@ public class NmgpGovCnAgencyProcessor implements PageProcessor {
             page.putField("page_all", count);
 
 
-            page.putField("content", JsonPath.read(page.getRawText(), "$.[0].[*]"));
+            page.putField("content", JsonPath.read(page.getRawText(), "$.[0].[*]").toString());
 
 
             page.addTargetRequest(String.format(baseUrl, pageNum = getPageNum() + 1));
