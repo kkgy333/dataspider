@@ -4,8 +4,18 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-		id, AGEINSNAME, AGEINSTYPENAME,ECOTYPENAME,AREACODE,AREANAME,TEL
+		ID,REMOTEID, AGEINSNAME, AGEINSTYPENAME,ECOTYPENAME,AREACODE,AREANAME,TEL
 	</sql>
+
+
+    <insert id="insert2"
+            useGeneratedKeys="true" keyProperty="ID">
+
+        insert into Agency(REMOTEID, AGEINSNAME, AGEINSTYPENAME,ECOTYPENAME,AREACODE,AREANAME,TEL) values
+        (#{REMOTEID},#{AGEINSNAME},#{AGEINSTYPENAME},#{ECOTYPENAME},#{AREACODE},#{AREANAME},#{TEL})
+
+    </insert>
+
 
     <!--<select id="selectByUsername" resultType="com.github.kkgy333.sword.fabric.server.model.User">-->
     <!--select-->

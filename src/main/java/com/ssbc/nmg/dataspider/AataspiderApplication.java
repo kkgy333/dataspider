@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
-        "com.ssbc.nmg.dataspider","com.ssbc.nmg.dataspider.dao.mapper","com.ssbc.nmg.dataspider.dao"})
+        "com.ssbc.nmg.dataspider","com.ssbc.nmg.dataspider.dao.mapper","com.ssbc.nmg.dataspider.dao","com.ssbc.nmg.dataspider.service"})
 public class AataspiderApplication {
 
     public static void main(String[] args) {

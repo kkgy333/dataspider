@@ -1,17 +1,21 @@
 package com.ssbc.nmg.dataspider;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ssbc.nmg.dataspider.dao.Agency;
 import com.ssbc.nmg.dataspider.dao.mapper.AgencyMapper;
+import com.ssbc.nmg.dataspider.service.AgencyService;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.PageModelPipeline;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
-import javax.annotation.Resource;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,13 +24,26 @@ import java.util.List;
 @Component("AgencyDaoPipeline")
 public class AgencyDaoPipeline implements Pipeline {
 
+
+    @Autowired
+    private AgencyService agencyService;
+
     @Override
     public void process(ResultItems resultItems, Task task) {
         System.out.println("get page: " + resultItems.getRequest().getUrl());
 
 
-        List<Agency> agencyList =JSON.parseArray(resultItems.get("content").toString(),Agency.class);
+        List<Agency> agencyList =JSON.parseArray(resultItems.get("content").toString().replace("ID","REMOTEID"),Agency.class);
 
+        for (Agency agency: agencyList) {
+
+            Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
+            ((QueryWrapper<Agency>) queryWrapper).eq("AGEINSNAME",agency.getAGEINSNAME());
+            Agency exist = agencyService.selectOne(queryWrapper);
+            if(exist ==null) {
+                agencyService.insert(agency);
+            }
+        }
 
 //        List<Agency> agencyList = new ArrayList<Agency>();
 //        for (Object item:(JSONArray)resultItems.get("content")){

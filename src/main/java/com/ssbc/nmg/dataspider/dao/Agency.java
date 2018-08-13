@@ -1,20 +1,33 @@
 package com.ssbc.nmg.dataspider.dao;
 
+import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Setter
 @Getter
 @ToString
-public class Agency {
-    private String id;
+@TableName(value="Agency")
+public class Agency extends Model<Agency> {
+    private static final long serialVersionUID = 1L;
+    @TableId(value="id", type= IdType.AUTO)
+    private int ID;
+    private String REMOTEID;
     private String AGEINSNAME;
     private String AGEINSTYPENAME;
     private String ECOTYPENAME;
     private String AREACODE;
     private String AREANAME;
     private String TEL;
+
+    @Override
+    protected Serializable pkVal() {
+        return this.getID();
+    }
 }
 
 
