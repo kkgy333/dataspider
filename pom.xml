@@ -60,7 +60,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0-gamma</version>
+            <version>3.0-RC1</version>
         </dependency>
         <!-- mybatis-plus end -->
         <dependency>

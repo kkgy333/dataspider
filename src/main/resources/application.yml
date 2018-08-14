@@ -65,6 +65,7 @@ mybatis-plus:
       #自定义SQL注入器
       #sql-injector: com.baomidou.springboot.xxx
 
+
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false

@@ -14,9 +14,9 @@ import java.io.Serializable;
 @TableName(value="Agency")
 public class Agency extends Model<Agency> {
     private static final long serialVersionUID = 1L;
-    @TableId(value="id", type= IdType.AUTO)
-    private int ID;
-    private String REMOTEID;
+    @TableId(value="id", type= IdType.INPUT)
+    private String ID;
+    //private String REMOTEID;
     private String AGEINSNAME;
     private String AGEINSTYPENAME;
     private String ECOTYPENAME;
