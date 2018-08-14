@@ -4,18 +4,17 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ssbc.nmg.dataspider.dao.Agency;
+import com.ssbc.nmg.dataspider.dao.ExtractingLog;
 import com.ssbc.nmg.dataspider.entity.JsonList;
 import com.ssbc.nmg.dataspider.entity.PageParam;
 import com.ssbc.nmg.dataspider.service.AgencyService;
+import com.ssbc.nmg.dataspider.service.ExtractingLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 @RequestMapping("api")
@@ -29,6 +28,9 @@ public class CommonController {
 
     @Autowired
     private AgencyService agencyService;
+
+    @Autowired
+    private ExtractingLogService extractingLogService;
 
     @GetMapping(value = "start")
     public void StartSpider() {
@@ -101,7 +103,45 @@ public class CommonController {
 
 
         Random rand = new Random();
-        return list.get( rand.nextInt(list.size()));
+        Agency agency= list.get( rand.nextInt(list.size()));
+
+        ExtractingLog extractingLog = new ExtractingLog();
+        extractingLog.setAgencyId(agency.getID());
+        extractingLog.setAgeinsName(agency.getAGEINSNAME());
+        extractingLogService.save(extractingLog);
+
+        return agency;
+    }
+
+
+    @PostMapping(value = "getExtractingLogList")
+    public Page<Agency> GetExtractingLogList( @RequestBody PageParam pageParam){
+
+       Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
+//
+//        if(pageParam.getExtension().containsKey("name")) {
+//            String name  = pageParam.getExtension().get("name") != null?pageParam.getExtension().get("name").toString():"";
+//            if(name.length()!=0) {
+//                ((QueryWrapper<Agency>) queryWrapper).like("ageinsname", name);
+//            }
+//        }
+//        if(pageParam.getExtension().containsKey("area") ) {
+//            String area  = pageParam.getExtension().get("area")!= null?pageParam.getExtension().get("area").toString():"";
+//            if(area.length()!=0) {
+//                ((QueryWrapper<Agency>) queryWrapper).like("areaname", area);
+//            }
+//        }
+
+        List<ExtractingLog> logs= extractingLogService.list(null);
+        Collection<String> values = new ArrayList<String>();
+        for (ExtractingLog log: logs) {
+            values.add(log.getAgencyId());
+        }
+
+        ((QueryWrapper<Agency>) queryWrapper).in("id",values);
+
+
+        return agencyService.selectListPage(pageParam.getCurrent(),pageParam.getPageSize(),queryWrapper);
     }
 
 

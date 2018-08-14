@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-@TableName(value="Agency")
+@TableName(value="agency")
 public class Agency extends Model<Agency> {
     private static final long serialVersionUID = 1L;
     @TableId(value="id", type= IdType.INPUT)

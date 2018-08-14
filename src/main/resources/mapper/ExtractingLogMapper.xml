@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssbc.nmg.dataspider.dao.mapper.ExtractingLogMapper">
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ssbc.nmg.dataspider.dao.ExtractingLog">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="agency_id" property="agencyId" />
+        <result column="ageins_name" property="ageinsName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+		id, agency_id, ageins_name
+	</sql>
+
+
+    <!--<insert id="insert2"-->
+    <!--useGeneratedKeys="true" keyProperty="ID">-->
+
+    <!--insert into Agency(REMOTEID, AGEINSNAME, AGEINSTYPENAME,ECOTYPENAME,AREACODE,AREANAME,TEL) values-->
+    <!--(#{REMOTEID},#{AGEINSNAME},#{AGEINSTYPENAME},#{ECOTYPENAME},#{AREACODE},#{AREANAME},#{TEL})-->
+
+    <!--</insert>-->
+
+
+    <!--<select id="selectByUsername" resultType="com.github.kkgy333.sword.fabric.server.model.User">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List"/>-->
+    <!--from user-->
+    <!--where username = #{username}-->
+    <!--</select>-->
+
+</mapper>

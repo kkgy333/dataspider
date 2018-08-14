@@ -38,10 +38,14 @@ public class AgencyDaoPipeline implements Pipeline {
         for (Agency agency: agencyList) {
 
             Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
-            ((QueryWrapper<Agency>) queryWrapper).eq("AGEINSNAME",agency.getAGEINSNAME());
+            ((QueryWrapper<Agency>) queryWrapper).eq("AGEINSNAME",agency.getAGEINSNAME())
+            .eq("AGEINSTYPENAME",agency.getAGEINSTYPENAME())
+            .eq("TEL",agency.getTEL());
             Agency exist = agencyService.getOne(queryWrapper);
             if(exist ==null) {
                 agencyService.save(agency);
+            }else{
+                System.out.println(exist.getAGEINSNAME()+"已经存在！");
             }
         }
 
