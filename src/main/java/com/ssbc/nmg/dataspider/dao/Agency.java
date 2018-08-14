@@ -35,26 +35,26 @@ public class Agency extends Model<Agency> {
 
 //        "ID":"2f2c8e3938cc4adfaac5c4f3364e68c7",
 //        "AGEINSID":"80",
-//        "AGEINSORGCODE":"75666860-9",
-//        "AGEINSNAME":"内蒙古存信招标有限责任公司",
-//        "AGEINSTYPECODE":"231",
-//        "AGEINSTYPENAME":"社会代理机构",
-//        "ECOTYPECODE":"9",
-//        "ECOTYPENAME":"其他",
+//        "AGEINSORGCODE":"75666860-9",                     组织机构代码
+//        "AGEINSNAME":"内蒙古存信招标有限责任公司",         代理机构名称
+//        "AGEINSTYPECODE":"231",                           机构类型枚举
+//        "AGEINSTYPENAME":"社会代理机构",                    机构类型
+//        "ECOTYPECODE":"9",                                经济性质枚举
+//        "ECOTYPENAME":"其他",                               经济性质
 //        "SUPERADMINSNAME":null,
-//        "AREACODE":"150100",
-//        "AREANAME":"呼和浩特市",
+//        "AREACODE":"150100",                              所在地编码
+//        "AREANAME":"呼和浩特市",                           所在地
 //        "ADMDIVCODE":"150000",
-//        "ADMDIVNAME":"内蒙古自治区",
-//        "OPEADD":"内蒙古呼和浩特市赛罕区大学东街亚辰商务中心14楼",
+//        "ADMDIVNAME":"内蒙古自治区",                        所属地区
+//        "OPEADD":"内蒙古呼和浩特市赛罕区大学东街亚辰商务中心14楼",   地址
 //        "ZIP":"010010",
 //        "TEL":"18647158578",
 //        "FAX":"0471-4675101",
 //        "EMAIL":"nmcxzb@163.com",
 //        "UNITLOG":"d:/gpmis-exec/agent/75666860-9/basInfo/unitLog.jpg",
-//        "INDACOMMREGADD":"内蒙古呼和浩特市赛罕区大学东街亚辰商务中心14楼",
-//        "REGFUNAMOUT":"1000",
-//        "MAJORSCOPE":"工程招标代理服务；政府采购招标代理服务、政府采购咨询服务；中央投资项目招标代理服务；国际招标代理服务；药品、医疗器械招标代理服务。",
+//        "INDACOMMREGADD":"内蒙古呼和浩特市赛罕区大学东街亚辰商务中心14楼",    企业地址
+//        "REGFUNAMOUT":"1000",                                              注册资本
+//        "MAJORSCOPE":"工程招标代理服务；政府采购招标代理服务、政府采购咨询服务；中央投资项目招标代理服务；国际招标代理服务；药品、医疗器械招标代理服务。",   经营范围
 //        "CONCSCOPE":null,
 //        "FULLTIMEPERNUM":"39",
 //        "TECHSECSCHABOPERTOTAL":"39",
