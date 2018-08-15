@@ -7,22 +7,42 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Setter
 @Getter
 @ToString
 @TableName(value="agency")
-public class Agency extends Model<Agency> {
+public class Agency<T extends Model>  extends Model<Agency> {
     private static final long serialVersionUID = 1L;
     @TableId(value="id", type= IdType.INPUT)
     private String ID;
-    //private String REMOTEID;
+    private String AGEINSORGCODE;
     private String AGEINSNAME;
+    private String AGEINSTYPECODE;
     private String AGEINSTYPENAME;
+    private String ECOTYPECODE;
     private String ECOTYPENAME;
     private String AREACODE;
     private String AREANAME;
+    private String ADMDIVCODE;
+    private String ADMDIVNAME;
+    private String OPEADD;
+    private String ZIP;
     private String TEL;
+    private String FAX;
+    private String EMAIL;
+    private String INDACOMMREGADD;
+    private String REGFUNAMOUT;
+    private String MAJORSCOPE;
+    private Date REGDATE;
+    private String REMARK;
+    private String SUBUSERCODE;
+    private String SUBUSERNAME;
+    private String SUBSTATUS;
+
+
+
 
     @Override
     protected Serializable pkVal() {

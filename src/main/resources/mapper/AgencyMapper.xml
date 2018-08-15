@@ -3,16 +3,16 @@
 <mapper namespace="com.ssbc.nmg.dataspider.dao.mapper.AgencyMapper">
 
 
-    <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.ssbc.nmg.dataspider.dao.Agency">
-        <id column="id" property="ID" jdbcType="VARCHAR" />
-        <result column="AGEINSNAME" property="AGEINSNAME" />
-        <result column="AGEINSTYPENAME" property="AGEINSTYPENAME" />
-        <result column="ECOTYPENAME" property="ECOTYPENAME" />
-        <result column="AREACODE" property="AREACODE" />
-        <result column="AREANAME" property="AREANAME" />
-        <result column="TEL" property="TEL" />
-    </resultMap>
+    <!--&lt;!&ndash; 通用查询映射结果 &ndash;&gt;-->
+    <!--<resultMap id="BaseResultMap" type="com.ssbc.nmg.dataspider.dao.Agency">-->
+        <!--<id column="id" property="ID" jdbcType="VARCHAR" />-->
+        <!--<result column="AGEINSNAME" property="AGEINSNAME" />-->
+        <!--<result column="AGEINSTYPENAME" property="AGEINSTYPENAME" />-->
+        <!--<result column="ECOTYPENAME" property="ECOTYPENAME" />-->
+        <!--<result column="AREACODE" property="AREACODE" />-->
+        <!--<result column="AREANAME" property="AREANAME" />-->
+        <!--<result column="TEL" property="TEL" />-->
+    <!--</resultMap>-->
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">

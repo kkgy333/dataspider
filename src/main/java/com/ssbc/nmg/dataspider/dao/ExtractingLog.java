@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -24,6 +25,11 @@ public class ExtractingLog extends Model<ExtractingLog> {
     private String agencyId;
     @TableField(value = "ageins_name")
     private String ageinsName;
+
+    @TableField(value = "extract_time")
+    private Date extractTime;
+
+
     @Override
     protected Serializable pkVal() {
         return this.getId();

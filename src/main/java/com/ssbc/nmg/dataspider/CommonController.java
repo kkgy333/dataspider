@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ssbc.nmg.dataspider.dao.Agency;
+import com.ssbc.nmg.dataspider.dao.AgencyExtract;
 import com.ssbc.nmg.dataspider.dao.ExtractingLog;
 import com.ssbc.nmg.dataspider.entity.JsonList;
 import com.ssbc.nmg.dataspider.entity.PageParam;
@@ -99,6 +100,8 @@ public class CommonController {
             }
         }
 
+
+
         List<Agency> list = agencyService.list(queryWrapper);
 
 
@@ -108,6 +111,7 @@ public class CommonController {
         ExtractingLog extractingLog = new ExtractingLog();
         extractingLog.setAgencyId(agency.getID());
         extractingLog.setAgeinsName(agency.getAGEINSNAME());
+        extractingLog.setExtractTime(new Date());
         extractingLogService.save(extractingLog);
 
         return agency;
@@ -115,7 +119,7 @@ public class CommonController {
 
 
     @PostMapping(value = "getExtractingLogList")
-    public Page<Agency> GetExtractingLogList( @RequestBody PageParam pageParam){
+    public Page<AgencyExtract> GetExtractingLogList( @RequestBody PageParam pageParam){
 
        Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
 //
@@ -132,17 +136,39 @@ public class CommonController {
 //            }
 //        }
 
-        List<ExtractingLog> logs= extractingLogService.list(null);
-        Collection<String> values = new ArrayList<String>();
-        for (ExtractingLog log: logs) {
-            values.add(log.getAgencyId());
-        }
+        Page<AgencyExtract> page = new Page<AgencyExtract>(pageParam.getCurrent(),pageParam.getPageSize());
 
-        ((QueryWrapper<Agency>) queryWrapper).in("id",values);
+        return  extractingLogService.selectExtractingLog(page);
 
 
-        return agencyService.selectListPage(pageParam.getCurrent(),pageParam.getPageSize(),queryWrapper);
+//        List<ExtractingLog> logs= extractingLogService.list(null);
+//        Collection<String> values = new ArrayList<String>();
+//        for (ExtractingLog log: logs) {
+//            values.add(log.getAgencyId());
+//        }
+//
+//        ((QueryWrapper<Agency>) queryWrapper).in("id",values);
+//
+//
+//        return agencyService.selectListPage(pageParam.getCurrent(),pageParam.getPageSize(),queryWrapper);
     }
+
+
+    @PostMapping(value = "deleteExtractingLog")
+    public boolean DeleteExtractingLog( @RequestBody Map<String,Object> param){
+        if(param.containsKey("id")) {
+            String id  = param.get("id") != null?param.get("id").toString():"";
+            if(id.length()!=0) {
+
+                Wrapper<ExtractingLog> queryWrapper = new QueryWrapper<ExtractingLog>();
+                ((QueryWrapper<ExtractingLog>) queryWrapper).eq("id",id);
+                return extractingLogService.remove(queryWrapper);
+            }
+        }
+        return false;
+    }
+
+
 
 
     @GetMapping(value = "random")
