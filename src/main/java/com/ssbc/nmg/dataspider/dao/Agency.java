@@ -1,10 +1,12 @@
 package com.ssbc.nmg.dataspider.dao;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -35,7 +37,9 @@ public class Agency<T extends Model>  extends Model<Agency> {
     private String INDACOMMREGADD;
     private String REGFUNAMOUT;
     private String MAJORSCOPE;
-    private Date REGDATE;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")//页面写入数据库时格式化
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")//数据库导出页面时json格式化
+    private String REGDATE;
     private String REMARK;
     private String SUBUSERCODE;
     private String SUBUSERNAME;

@@ -11,7 +11,7 @@ spring:
       enabled: false
 # H2 DATABASE CONFIG
   datasource:
-      url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/dataspider?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/dataspider?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
       username: root
       password: "!QAZ2wsx"
       # 使用druid数据源
