@@ -8,12 +8,15 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
-        "com.ssbc.nmg.dataspider","com.ssbc.nmg.dataspider.dao.mapper","com.ssbc.nmg.dataspider.dao","com.ssbc.nmg.dataspider.service"})
+        "com.ssbc.nmg.dataspider",
+        //"com.ssbc.nmg.dataspider.dao.mapper",
+        //"com.ssbc.nmg.dataspider.dao",
+        "com.ssbc.nmg.dataspider.service"})
 public class AataspiderApplication extends SpringBootServletInitializer {
 
-//    public static void main(String[] args) {
-//        SpringApplication.run(AataspiderApplication.class, args);
-//    }
+    public static void main(String[] args) {
+        SpringApplication.run(AataspiderApplication.class, args);
+    }
 
 
 
