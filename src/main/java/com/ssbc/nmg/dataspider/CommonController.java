@@ -138,8 +138,8 @@ public class CommonController {
 
         Page<AgencyExtract> page = new Page<AgencyExtract>(pageParam.getCurrent(),pageParam.getPageSize());
 
-        return  extractingLogService.selectExtractingLog(page);
-
+        Page<AgencyExtract> agencyExtracts=  extractingLogService.selectExtractingLog(page);
+        return agencyExtracts;
 
 //        List<ExtractingLog> logs= extractingLogService.list(null);
 //        Collection<String> values = new ArrayList<String>();

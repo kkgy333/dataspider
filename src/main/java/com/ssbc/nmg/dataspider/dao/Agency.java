@@ -37,9 +37,7 @@ public class Agency<T extends Model>  extends Model<Agency> {
     private String INDACOMMREGADD;
     private String REGFUNAMOUT;
     private String MAJORSCOPE;
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")//页面写入数据库时格式化
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")//数据库导出页面时json格式化
-    private String REGDATE;
+    private Date REGDATE;
     private String REMARK;
     private String SUBUSERCODE;
     private String SUBUSERNAME;

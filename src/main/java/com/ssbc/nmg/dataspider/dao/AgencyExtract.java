@@ -15,7 +15,7 @@ import java.util.Date;
 public class AgencyExtract extends Agency<AgencyExtract> {
 
     @TableField(value = "extract_time")
-    private String extractTime;
+    private Date extractTime;
 
     @TableField(value = "extract_id")
     private String extractId;
