@@ -57,16 +57,31 @@ public class CommonController {
 
         Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
 
-        if(pageParam.getExtension().containsKey("name")) {
-            String name  = pageParam.getExtension().get("name") != null?pageParam.getExtension().get("name").toString():"";
-            if(name.length()!=0) {
-                ((QueryWrapper<Agency>) queryWrapper).like("ageinsname", name);
+//        if(pageParam.getExtension().containsKey("name")) {
+//            String name  = pageParam.getExtension().get("name") != null?pageParam.getExtension().get("name").toString():"";
+//            if(name.length()!=0) {
+//                ((QueryWrapper<Agency>) queryWrapper).like("ageinsname", name);
+//            }
+//        }
+//        if(pageParam.getExtension().containsKey("area") ) {
+//            String area  = pageParam.getExtension().get("area")!= null?pageParam.getExtension().get("area").toString():"";
+//            if(area.length()!=0) {
+//                ((QueryWrapper<Agency>) queryWrapper).like("areaname", area);
+//            }
+//        }
+
+        if(pageParam.getExtension().containsKey("areacode") ) {
+            String areacode  = pageParam.getExtension().get("areacode")!= null?pageParam.getExtension().get("areacode").toString():"";
+            if(areacode.length()!=0) {
+                ((QueryWrapper<Agency>) queryWrapper).eq("areacode", areacode);
             }
         }
-        if(pageParam.getExtension().containsKey("area") ) {
-            String area  = pageParam.getExtension().get("area")!= null?pageParam.getExtension().get("area").toString():"";
-            if(area.length()!=0) {
-                ((QueryWrapper<Agency>) queryWrapper).like("areaname", area);
+
+
+        if(pageParam.getExtension().containsKey("opeadd") ) {
+            String opeadd  = pageParam.getExtension().get("opeadd")!= null?pageParam.getExtension().get("opeadd").toString():"";
+            if(opeadd.length()!=0) {
+                ((QueryWrapper<Agency>) queryWrapper).like("opeadd", opeadd);
             }
         }
 
@@ -87,18 +102,34 @@ public class CommonController {
 
         Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
 
-        if(param.containsKey("name")) {
-            String name  = param.get("name") != null?param.get("name").toString():"";
-            if(name.length()!=0) {
-                ((QueryWrapper<Agency>) queryWrapper).like("ageinsname", name);
+//        if(param.containsKey("name")) {
+//            String name  = param.get("name") != null?param.get("name").toString():"";
+//            if(name.length()!=0) {
+//                ((QueryWrapper<Agency>) queryWrapper).like("ageinsname", name);
+//            }
+//        }
+//        if(param.containsKey("area") ) {
+//            String area  = param.get("area")!= null?param.get("area").toString():"";
+//            if(area.length()!=0) {
+//                ((QueryWrapper<Agency>) queryWrapper).like("areaname", area);
+//            }
+//        }
+
+
+
+        if(param.containsKey("areacode")) {
+            String areacode  = param.get("areacode") != null?param.get("areacode").toString():"";
+            if(areacode.length()!=0) {
+                ((QueryWrapper<Agency>) queryWrapper).eq("areacode", areacode);
             }
         }
-        if(param.containsKey("area") ) {
-            String area  = param.get("area")!= null?param.get("area").toString():"";
-            if(area.length()!=0) {
-                ((QueryWrapper<Agency>) queryWrapper).like("areaname", area);
+        if(param.containsKey("opeadd") ) {
+            String opeadd  = param.get("opeadd")!= null?param.get("opeadd").toString():"";
+            if(opeadd.length()!=0) {
+                ((QueryWrapper<Agency>) queryWrapper).like("opeadd", opeadd);
             }
         }
+
 
 
 

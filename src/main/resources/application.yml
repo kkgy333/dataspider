@@ -2,7 +2,7 @@
 server:
     port: 8082
 
-#MYSQL_HOST: 182.92.102.51
+MYSQL_HOST: 182.92.102.51
 
 #spring
 spring:
