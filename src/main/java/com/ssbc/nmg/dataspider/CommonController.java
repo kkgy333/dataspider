@@ -35,6 +35,8 @@ public class CommonController {
 
     @GetMapping(value = "start")
     public void StartSpider() {
+
+        agencyService.remove(null);
         Spider.create(nmgpGovCnAgencyProcessor).addUrl(String.format(nmgpGovCnAgencyProcessor.baseUrl,nmgpGovCnAgencyProcessor.getPageNum()))
                 .addPipeline(agencyDaoPipeline)
                 .thread(5).run();
