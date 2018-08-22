@@ -59,6 +59,8 @@ public class CommonController {
 
         Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
 
+        ((QueryWrapper<Agency>) queryWrapper).notIn("ageinstypename","集中采购机构");
+
 //        if(pageParam.getExtension().containsKey("name")) {
 //            String name  = pageParam.getExtension().get("name") != null?pageParam.getExtension().get("name").toString():"";
 //            if(name.length()!=0) {
@@ -103,7 +105,7 @@ public class CommonController {
     public Agency ExtractingAgency(@RequestBody Map<String,Object> param){
 
         Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
-
+        ((QueryWrapper<Agency>) queryWrapper).notIn("ageinstypename","集中采购机构");
 //        if(param.containsKey("name")) {
 //            String name  = param.get("name") != null?param.get("name").toString():"";
 //            if(name.length()!=0) {
