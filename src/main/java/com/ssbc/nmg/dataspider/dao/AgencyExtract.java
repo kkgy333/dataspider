@@ -19,4 +19,9 @@ public class AgencyExtract extends Agency<AgencyExtract> {
 
     @TableField(value = "extract_id")
     private String extractId;
+
+    @TableField(value = "project_person")
+    private String projectPerson;
+    @TableField(value = "project_name")
+    private String projectName;
 }

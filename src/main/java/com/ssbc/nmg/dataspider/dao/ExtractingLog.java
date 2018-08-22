@@ -29,8 +29,11 @@ public class ExtractingLog extends Model<ExtractingLog> {
     @TableField(value = "ageins_name")
     private String ageinsName;
     @TableField(value = "extract_time")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date extractTime;
+    @TableField(value = "project_person")
+    private String projectPerson;
+    @TableField(value = "project_name")
+    private String projectName;
 
 
     @Override

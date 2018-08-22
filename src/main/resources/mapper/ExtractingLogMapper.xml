@@ -11,22 +11,22 @@
     <!--</resultMap>-->
 
 
-    <resultMap type="com.ssbc.nmg.dataspider.dao.ExtractingLog" id="extractingLogBean">
-        <id column="extracting_id" property="id" />
-        <result column="agency_id" property="agencyId" />
-        <result column="ageins_name" property="ageinsName" />
-        <!-- 一对一的关系 -->
-        <!-- property: 指的是属性的值, javaType：指的是元素的类型 -->
-        <association property="agency" javaType="com.ssbc.nmg.dataspider.dao.Agency">
-            <id column="id" property="ID" jdbcType="VARCHAR" />
-            <result column="AGEINSNAME" property="AGEINSNAME" />
-            <result column="AGEINSTYPENAME" property="AGEINSTYPENAME" />
-            <result column="ECOTYPENAME" property="ECOTYPENAME" />
-            <result column="AREACODE" property="AREACODE" />
-            <result column="AREANAME" property="AREANAME" />
-            <result column="TEL" property="TEL" />
-        </association>
-    </resultMap>
+    <!--<resultMap type="com.ssbc.nmg.dataspider.dao.ExtractingLog" id="extractingLogBean">-->
+        <!--<id column="extracting_id" property="id" />-->
+        <!--<result column="agency_id" property="agencyId" />-->
+        <!--<result column="ageins_name" property="ageinsName" />-->
+        <!--&lt;!&ndash; 一对一的关系 &ndash;&gt;-->
+        <!--&lt;!&ndash; property: 指的是属性的值, javaType：指的是元素的类型 &ndash;&gt;-->
+        <!--<association property="agency" javaType="com.ssbc.nmg.dataspider.dao.Agency">-->
+            <!--<id column="id" property="ID" jdbcType="VARCHAR" />-->
+            <!--<result column="AGEINSNAME" property="AGEINSNAME" />-->
+            <!--<result column="AGEINSTYPENAME" property="AGEINSTYPENAME" />-->
+            <!--<result column="ECOTYPENAME" property="ECOTYPENAME" />-->
+            <!--<result column="AREACODE" property="AREACODE" />-->
+            <!--<result column="AREANAME" property="AREANAME" />-->
+            <!--<result column="TEL" property="TEL" />-->
+        <!--</association>-->
+    <!--</resultMap>-->
 
 
 
@@ -37,7 +37,7 @@
 
 
     <select id="selectExtractingLog"  resultType="com.ssbc.nmg.dataspider.dao.AgencyExtract">
-		SELECT agency.*,extracting_log.extract_time,extracting_log.id AS extract_id FROM extracting_log LEFT JOIN agency ON extracting_log.agency_id = agency.ID  ORDER BY extracting_log.extract_time DESC
+		SELECT agency.*,extracting_log.extract_time,extracting_log.id AS extract_id,extracting_log.project_person,extracting_log.project_name FROM extracting_log LEFT JOIN agency ON extracting_log.agency_id = agency.ID  ORDER BY extracting_log.extract_time DESC
 	</select>
 
     <!--<insert id="insert2"-->

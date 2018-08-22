@@ -119,8 +119,6 @@ public class CommonController {
 //            }
 //        }
 
-
-
         if(param.containsKey("areacode")) {
             String areacode  = param.get("areacode") != null?param.get("areacode").toString():"";
             if(areacode.length()!=0) {
@@ -133,12 +131,7 @@ public class CommonController {
                 ((QueryWrapper<Agency>) queryWrapper).like("opeadd", opeadd);
             }
         }
-
-
-
-
         List<Agency> list = agencyService.list(queryWrapper);
-
 
         Random rand = new Random();
         Agency agency= list.get( rand.nextInt(list.size()));
@@ -147,6 +140,19 @@ public class CommonController {
         extractingLog.setAgencyId(agency.getID());
         extractingLog.setAgeinsName(agency.getAGEINSNAME());
         extractingLog.setExtractTime(new Date());
+
+        if(param.containsKey("projectname")) {
+            String projectname  = param.get("projectname") != null?param.get("projectname").toString():"";
+            if(projectname.length()!=0) {
+                extractingLog.setProjectName( projectname);
+            }
+        }
+        if(param.containsKey("projectperson") ) {
+            String projectperson  = param.get("projectperson")!= null?param.get("projectperson").toString():"";
+            if(projectperson.length()!=0) {
+                extractingLog.setProjectPerson(projectperson);
+            }
+        }
         extractingLogService.save(extractingLog);
 
         return agency;
