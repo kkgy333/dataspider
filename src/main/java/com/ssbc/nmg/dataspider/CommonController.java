@@ -7,11 +7,12 @@ import com.ssbc.nmg.dataspider.dao.Agency;
 import com.ssbc.nmg.dataspider.dao.AgencyExtract;
 import com.ssbc.nmg.dataspider.dao.ExtractingLog;
 import com.ssbc.nmg.dataspider.dao.User;
-import com.ssbc.nmg.dataspider.entity.JsonList;
 import com.ssbc.nmg.dataspider.entity.PageParam;
+import com.ssbc.nmg.dataspider.jwt.JwtHelper;
 import com.ssbc.nmg.dataspider.service.AgencyService;
 import com.ssbc.nmg.dataspider.service.ExtractingLogService;
 import com.ssbc.nmg.dataspider.service.UserService;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,9 @@ import us.codecraft.webmagic.Spider;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.apache.tomcat.util.codec.binary.Base64;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 
 import java.util.*;
@@ -42,50 +46,22 @@ public class CommonController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private JwtHelper jwtHelper;
+
 
     @PostMapping(value = "login")
     public String Login(@RequestBody Map<String,Object> param) {
         String username="";
         String password = "";
-        Wrapper<User> queryWrapper = new QueryWrapper<User>();
-
         if(param.containsKey("username")) {
             username  = param.get("username") != null?param.get("username").toString():"";
-            if(username.length()!=0) {
-                ((QueryWrapper<User>) queryWrapper).like("username", username);
-            }
         }
         if(param.containsKey("password") ) {
             password  = param.get("password")!= null?param.get("password").toString():"";
-            if(password.length()!=0) {
-                ((QueryWrapper<User>) queryWrapper).like("password", password);
-            }
         }
-
-
-        User user = userService.getOne(queryWrapper);
-
-        if(user!=null){
-            Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-
-            Date now = new Date(System.currentTimeMillis());
-            JwtBuilder builder = Jwts.builder()
-                    .setHeaderParam("typ", "JWT")    //设置header
-                    .setHeaderParam("alg", "HS256")
-                    .setIssuedAt(now)     //设置iat
-                    .claim("username", user.getUserName())   //设置payload的键值对
-                    .setIssuer("lwl")
-                    .signWith( key);    //签名，需要算法和key
-            String jwt = builder.compact();
-
-            return jwt;
-        }
-        return "";
+        return jwtHelper.getToken(username,password);
     }
-
-
-
-
 
     @GetMapping(value = "start")
     public void StartSpider() {
