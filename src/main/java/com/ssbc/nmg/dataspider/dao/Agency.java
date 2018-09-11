@@ -19,6 +19,7 @@ public class Agency<T extends Model>  extends Model<Agency> {
     private static final long serialVersionUID = 1L;
     @TableId(value="id", type= IdType.INPUT)
     private String ID;
+    private String AGEINSID;
     private String AGEINSORGCODE;
     private String AGEINSNAME;
     private String AGEINSTYPECODE;

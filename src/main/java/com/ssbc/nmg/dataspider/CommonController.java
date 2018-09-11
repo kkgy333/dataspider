@@ -31,8 +31,8 @@ import java.util.*;
 @RequestMapping("api")
 public class CommonController {
 
-    @Autowired
-    private NmgpGovCnAgencyProcessor nmgpGovCnAgencyProcessor;
+//    @Autowired
+//    private NmgpGovCnAgencyProcessor nmgpGovCnAgencyProcessor;
 
     @Autowired
     private AgencyDaoPipeline agencyDaoPipeline;
@@ -48,6 +48,8 @@ public class CommonController {
 
     @Autowired
     private JwtHelper jwtHelper;
+
+//    private Spider spider;
 
 
     @PostMapping(value = "login")
@@ -67,9 +69,16 @@ public class CommonController {
     public void StartSpider() {
 
         agencyService.remove(null);
-        Spider.create(nmgpGovCnAgencyProcessor).addUrl(String.format(nmgpGovCnAgencyProcessor.baseUrl,nmgpGovCnAgencyProcessor.getPageNum()))
-                .addPipeline(agencyDaoPipeline)
-                .thread(5).run();
+//        nmgpGovCnAgencyProcessor.reset();
+//        if(spider==null) {
+//            spider =
+        NmgpGovCnAgencyProcessor nmgpGovCnAgencyProcessor = new NmgpGovCnAgencyProcessor();
+                    Spider.create(nmgpGovCnAgencyProcessor).addUrl(String.format(nmgpGovCnAgencyProcessor.baseUrl, nmgpGovCnAgencyProcessor.getPageNum()))
+                    .addPipeline(agencyDaoPipeline)
+                    .thread(5).run();
+//        }
+//        spider.run();
+
     }
 
 

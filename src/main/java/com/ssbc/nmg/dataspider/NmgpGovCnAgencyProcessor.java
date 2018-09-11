@@ -54,4 +54,11 @@ public class NmgpGovCnAgencyProcessor implements PageProcessor {
     public int getPageNum() {
         return pageNum;
     }
+
+
+    public void reset() {
+        pageNum = 1;
+        singleComplete = false;
+        remoteCount = 0;
+    }
 }
