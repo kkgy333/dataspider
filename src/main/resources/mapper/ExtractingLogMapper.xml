@@ -37,7 +37,14 @@
 
 
     <select id="selectExtractingLog"  resultType="com.ssbc.nmg.dataspider.dao.AgencyExtract">
-		SELECT agency.*,extracting_log.extract_time,extracting_log.id AS extract_id,extracting_log.project_person,extracting_log.project_name FROM extracting_log LEFT JOIN agency ON extracting_log.agency_id = agency.ID  ORDER BY extracting_log.extract_time DESC
+		SELECT agency.ageinsid,case when agency.ageinsname IS NOT NULL THEN agency.ageinsname
+		 else CONCAT(extracting_log.ageins_name,'（采购网未找到）')  END AS ageinsname ,agency.admdivname,agency.tel,
+		agency.ageinstypename,agency.ageinsorgcode,agency.ageinstypecode,agency.ecotypecode,
+		agency.ecotypename,agency.areacode,agency.admdivcode,agency.opeadd,agency.zip,agency.fax,
+		agency.email,agency.indacommregadd,agency.regfunamout,agency.majorscope,agency.regdate,
+		agency.remark,agency.subusercode,agency.subusername,agency.substatus,agency.county,
+		extracting_log.extract_time,extracting_log.id AS extract_id,extracting_log.project_person,extracting_log.project_name
+		FROM extracting_log LEFT JOIN agency ON extracting_log.ageins_name = agency.AGEINSNAME  ORDER BY extracting_log.extract_time DESC
 	</select>
 
     <!--<insert id="insert2"-->

@@ -16,11 +16,15 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Spider;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.apache.tomcat.util.codec.binary.Base64;
+import us.codecraft.webmagic.model.HttpRequestBody;
+import us.codecraft.webmagic.utils.HttpConstant;
+
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
@@ -49,6 +53,10 @@ public class CommonController {
     @Autowired
     private JwtHelper jwtHelper;
 
+
+    @Autowired
+    private NmgpGovCnAgencyProcessorV2 nmgpGovCnAgencyProcessor;
+
 //    private Spider spider;
 
 
@@ -72,8 +80,17 @@ public class CommonController {
 //        nmgpGovCnAgencyProcessor.reset();
 //        if(spider==null) {
 //            spider =
-        NmgpGovCnAgencyProcessor nmgpGovCnAgencyProcessor = new NmgpGovCnAgencyProcessor();
-                    Spider.create(nmgpGovCnAgencyProcessor).addUrl(String.format(nmgpGovCnAgencyProcessor.baseUrl, nmgpGovCnAgencyProcessor.getPageNum()))
+
+        Request startPage = new Request();
+        startPage.setUrl(nmgpGovCnAgencyProcessor.baseUrl);
+        startPage.setMethod(HttpConstant.Method.POST);
+        Map<String, Object> params = new HashMap<>();
+        params.put("byf_page", nmgpGovCnAgencyProcessor.getPageNum());
+        params.put("page_size", nmgpGovCnAgencyProcessor.getPageSize());
+        startPage.setRequestBody(HttpRequestBody.form(params, "utf-8"));
+
+
+                    Spider.create(nmgpGovCnAgencyProcessor).addRequest(startPage)
                     .addPipeline(agencyDaoPipeline)
                     .thread(5).run();
 //        }
@@ -98,7 +115,7 @@ public class CommonController {
 
         Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
 
-        ((QueryWrapper<Agency>) queryWrapper).notIn("ageinstypename","集中采购机构").in("AREANAME","赛罕区","新城区");
+        ((QueryWrapper<Agency>) queryWrapper).notIn("ageinstypename","集中采购机构").in("county","赛罕区","新城区");
 
         ((QueryWrapper<Agency>) queryWrapper).notInSql("AGEINSID","SELECT agency_id FROM extracting_log WHERE extract_time > '2018-12-31 23:59:59'");
 
@@ -114,7 +131,7 @@ public class CommonController {
         if(pageParam.getExtension().containsKey("opeadd") ) {
             String opeadd  = pageParam.getExtension().get("opeadd")!= null?pageParam.getExtension().get("opeadd").toString():"";
             if(opeadd.length()!=0) {
-                ((QueryWrapper<Agency>) queryWrapper).like("opeadd", opeadd);
+                ((QueryWrapper<Agency>) queryWrapper).like("AREANAME", opeadd);
             }
         }
 
@@ -138,7 +155,7 @@ public class CommonController {
         if(param.containsKey("opeadd") ) {
             String opeadd  = param.get("opeadd")!= null?param.get("opeadd").toString():"";
             if(opeadd.length()!=0) {
-                ((QueryWrapper<Agency>) queryWrapper).like("opeadd", opeadd);
+                ((QueryWrapper<Agency>) queryWrapper).like("AREANAME", opeadd);
             }
         }
         List<Agency> list = agencyService.list(queryWrapper);

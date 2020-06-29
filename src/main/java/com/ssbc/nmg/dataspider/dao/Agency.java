@@ -9,6 +9,8 @@ import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter
@@ -19,6 +21,7 @@ public class Agency<T extends Model>  extends Model<Agency> {
     private static final long serialVersionUID = 1L;
     @TableId(value="id", type= IdType.INPUT)
     private String ID;
+
     private String AGEINSID;
     private String AGEINSORGCODE;
     private String AGEINSNAME;
@@ -38,11 +41,13 @@ public class Agency<T extends Model>  extends Model<Agency> {
     private String INDACOMMREGADD;
     private String REGFUNAMOUT;
     private String MAJORSCOPE;
-    private Date REGDATE;
+    private LocalDate REGDATE;
     private String REMARK;
     private String SUBUSERCODE;
     private String SUBUSERNAME;
     private String SUBSTATUS;
+    private String COUNTY;
+
 
 
 
@@ -50,6 +55,35 @@ public class Agency<T extends Model>  extends Model<Agency> {
     @Override
     protected Serializable pkVal() {
         return this.getID();
+    }
+
+    @JSONField(name = "AGENT_NAME")
+    public void setAGEINSNAME(String AGEINSNAME) {
+        this.AGEINSNAME = AGEINSNAME;
+    }
+
+
+    @JSONField(name = "CITY")
+    public void setAREANAME(String AREANAME) {
+        this.AREANAME = AREANAME;
+    }
+    @JSONField(name = "PROVINCE")
+    public void setADMDIVNAME(String ADMDIVNAME) {
+        this.ADMDIVNAME = ADMDIVNAME;
+    }
+
+    @JSONField(name = "FIXED_TEL")
+    public void setTEL(String TEL) {
+        this.TEL = TEL;
+    }
+    @JSONField(name = "ID")
+    public void setAGEINSID(String AGEINSID) {
+        this.AGEINSID = AGEINSID;
+        this.ID =AGEINSID;
+    }
+    @JSONField(name = "KIND_CODE")
+    public void setAGEINSTYPENAME(String AGEINSTYPENAME) {
+        this.AGEINSTYPENAME = AGEINSTYPENAME;
     }
 }
 

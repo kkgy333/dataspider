@@ -33,19 +33,26 @@ public class AgencyDaoPipeline implements Pipeline {
         System.out.println("get page: " + resultItems.getRequest().getUrl());
 
 
-        List<Agency> agencyList =JSON.parseArray(resultItems.get("content").toString(),Agency.class);
+        if(resultItems.get("agency")!=null){
+            Agency agency =  resultItems.get("agency");
 
-        for (Agency agency: agencyList) {
+            agencyService.saveOrUpdate(agency);
 
-            Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
-            ((QueryWrapper<Agency>) queryWrapper).eq("AGEINSNAME",agency.getAGEINSNAME())
-            .eq("AGEINSTYPENAME",agency.getAGEINSTYPENAME())
-            .eq("TEL",agency.getTEL());
-            Agency exist = agencyService.getOne(queryWrapper);
-            if(exist ==null) {
-                agencyService.save(agency);
-            }else{
-                System.out.println(exist.getAGEINSNAME()+"已经存在！");
+        }else {
+            List<Agency> agencyList = JSON.parseArray(resultItems.get("content").toString(), Agency.class);
+
+            for (Agency agency : agencyList) {
+
+                Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
+                ((QueryWrapper<Agency>) queryWrapper).eq("AGEINSNAME", agency.getAGEINSNAME())
+                        .eq("AGEINSTYPENAME", agency.getAGEINSTYPENAME())
+                        .eq("TEL", agency.getTEL());
+                Agency exist = agencyService.getOne(queryWrapper);
+                if (exist == null) {
+                    agencyService.save(agency);
+                } else {
+                    System.out.println(exist.getAGEINSNAME() + "已经存在！");
+                }
             }
         }
 

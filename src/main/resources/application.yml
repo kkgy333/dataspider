@@ -2,7 +2,7 @@
 server:
     port: 8082
 
-MYSQL_HOST: 182.92.102.51
+MYSQL_HOST: 172.17.1.113
 
 #spring
 spring:
@@ -73,3 +73,4 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
