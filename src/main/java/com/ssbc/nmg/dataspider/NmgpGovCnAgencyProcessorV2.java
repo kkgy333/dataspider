@@ -145,20 +145,22 @@ public class NmgpGovCnAgencyProcessorV2 implements PageProcessor {
     public static void main(String[] args) {
 
 
-        Request startPage = new Request();
-        startPage.setUrl("http://www.nmgp.gov.cn/zfcgwslave/web/index.php?r=new-data%2Fdljg-list");
-        startPage.setMethod(HttpConstant.Method.POST);
-        Map<String, Object> params = new HashMap<>();
-        params.put("byf_page", 1);
-        params.put("page_size", 18);
-        startPage.setRequestBody(HttpRequestBody.form(params, "utf-8"));
+//        Request startPage = new Request();
+//        startPage.setUrl("http://www.nmgp.gov.cn/zfcgwslave/web/index.php?r=new-data%2Fdljg-list");
+//        startPage.setMethod(HttpConstant.Method.POST);
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("byf_page", 1);
+//        params.put("page_size", 18);
+//        startPage.setRequestBody(HttpRequestBody.form(params, "utf-8"));
+//
+//
+//        Spider.create(new NmgpGovCnAgencyProcessorV2()).addRequest(startPage)
+//                .addPipeline(new AgencyDaoPipeline())
+//                //开启5个线程抓取
+//                .thread(5)
+//                //启动爬虫
+//                .run();
 
 
-        Spider.create(new NmgpGovCnAgencyProcessorV2()).addRequest(startPage)
-                .addPipeline(new AgencyDaoPipeline())
-                //开启5个线程抓取
-                .thread(5)
-                //启动爬虫
-                .run();
     }
 }
