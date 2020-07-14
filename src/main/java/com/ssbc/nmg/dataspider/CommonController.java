@@ -115,17 +115,17 @@ public class CommonController {
 
         Wrapper<Agency> queryWrapper = new QueryWrapper<Agency>();
 
-        ((QueryWrapper<Agency>) queryWrapper).notIn("ageinstypename","集中采购机构").in("county","赛罕区","新城区");
+//        ((QueryWrapper<Agency>) queryWrapper).notIn("ageinstypename","集中采购机构").in("county","赛罕区","新城区");
+//
+//        ((QueryWrapper<Agency>) queryWrapper).notInSql("AGEINSID","SELECT agency_id FROM extracting_log WHERE extract_time > '2018-12-31 23:59:59'");
 
-        ((QueryWrapper<Agency>) queryWrapper).notInSql("AGEINSID","SELECT agency_id FROM extracting_log WHERE extract_time > '2018-12-31 23:59:59'");
 
-
-        if(pageParam.getExtension().containsKey("areacode") ) {
-            String areacode  = pageParam.getExtension().get("areacode")!= null?pageParam.getExtension().get("areacode").toString():"";
-            if(areacode.length()!=0) {
-                ((QueryWrapper<Agency>) queryWrapper).eq("areacode", areacode);
-            }
-        }
+//        if(pageParam.getExtension().containsKey("areacode") ) {
+//            String areacode  = pageParam.getExtension().get("areacode")!= null?pageParam.getExtension().get("areacode").toString():"";
+//            if(areacode.length()!=0) {
+//                ((QueryWrapper<Agency>) queryWrapper).eq("areacode", areacode);
+//            }
+//        }
 
 
         if(pageParam.getExtension().containsKey("opeadd") ) {

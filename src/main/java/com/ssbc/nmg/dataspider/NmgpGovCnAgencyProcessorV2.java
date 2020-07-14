@@ -161,6 +161,6 @@ public class NmgpGovCnAgencyProcessorV2 implements PageProcessor {
 //                //启动爬虫
 //                .run();
 
-
+        System.out.println(MD5Util.md5( "!Kkgy5405357"));
     }
 }
